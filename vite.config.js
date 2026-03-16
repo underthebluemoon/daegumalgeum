@@ -4,6 +4,16 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
+  // 개발용 프록시
+  server: {                                                                                     
+      proxy: {                                                                                    
+        '/api/air': {                                                                                 
+          target: 'https://apis.data.go.kr',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api\/air/, ''),
+        },
+      },
+    },
   plugins: [
     react(),
     VitePWA({
