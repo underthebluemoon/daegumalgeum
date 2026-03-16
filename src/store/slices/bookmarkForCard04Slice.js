@@ -20,9 +20,7 @@ const bookmarkCard04 = createSlice({
         // console.log('regionStationMap :', state.regionStationMap[action.meta.arg], 'action.payload에서 가져온 측정소 이름 :', action.payload.nearestStation.stationName)
       }
     })
-    .addMatcher(
-      action => action.type.endsWith('/rejected'),
-      (state, action) => {
+    .addCase(getSearchLocation.rejected, (state, action) => {
         console.error('내 장소의 측정소 가져오기 실패 : ', action.payload);
         // 특정 지역 검색 실패 시, 맵에 에러 상태 저장
         if (action.meta.arg) {

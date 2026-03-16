@@ -70,9 +70,7 @@ const currentAirConditionSlice = createSlice({
     // ============================================
     // ||     오류 처리
     // ============================================
-    .addMatcher(
-      action => action.type.endsWith('/rejected'),
-      (state, action) => {
+    .addCase(getCurrentAirCondition.rejected, (state, action) => {
         state.error = true;
         state.loading = false;
         state.error = action.error.message || '데이터를 불러오는데 실패했습니다.';

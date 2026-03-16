@@ -34,9 +34,7 @@ const latestAirCondition = createSlice({
     // ============================================
     // ||     오류 처리
     // ============================================
-    .addMatcher(
-      action => action.type.endsWith('/rejected'),
-      (state, action) => {
+    .addCase(getLatestAirCondition.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || '미세먼지 추세 데이터 불러오기 실패';
         console.error('미세먼지 추세 데이터 불러오기 실패', action.error);

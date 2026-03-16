@@ -66,9 +66,7 @@ const bookmarkSlice = createSlice({
       state.loading = false;
       state.error = null;
     })
-    .addMatcher(
-      action => action.type.endsWith('/rejected'),
-      (state, action) => {
+    .addCase(getSearchLocationForBookmark.rejected, (state, action) => {
         state.loading = false;
         console.error('현재 북마크 저장하기 위한 측정소 정보 가져오기 실패 : ', action.error);
       }
