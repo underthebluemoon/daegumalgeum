@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "rewrites": [
+    { "source": "/api/air/:path*", "destination": "http://apis.data.go.kr/:path*" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
