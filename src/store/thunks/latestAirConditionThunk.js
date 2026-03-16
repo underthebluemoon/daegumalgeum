@@ -17,14 +17,23 @@ export const getLatestAirCondition = createAsyncThunk(
       const params = {
         serviceKey: axiosAirConfig.SERVICE_KEY,
         returnType: axiosAirConfig.RETURN_TYPE,
-        numOfRows: axiosAirConfig.NUM_OF_ROWS_2,
-        pageNo: axiosAirConfig.PAGE_NO,
+        numOfRows: axiosAirConfig.NUM_OF_ROWS,
+        // numOfRows: axiosAirConfig.NUM_OF_ROWS_2,
+        // pageNo: axiosAirConfig.PAGE_NO,
         ver: axiosAirConfig.VER,
-        dataTerm: axiosAirConfig.DATA_TERM_2,
+        dataTerm: axiosAirConfig.DATA_TERM,
+        // dataTerm: axiosAirConfig.DATA_TERM_2,
 
         stationName: measuringStation,
       }
-      const currentAir = await axios.get(url, { params });
+      const currentAir = await axios.get(url, { 
+        params,
+        // 측정소 이름 인코딩 방지
+        paramsSerializer: (params) =>
+        Object.entries(params)
+          .map(([key, value]) => `${key}=${value}`)
+          .join('&'),
+      });
       // console.log('Thunk에서 받아온 정보: ', currentAir.data.response.body);
 
       // ============================================
