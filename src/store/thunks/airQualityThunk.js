@@ -106,6 +106,8 @@ export const fetchAirQuality = createAsyncThunk(
           },
         }
       );
+      console.log('airQualityThunk: ', response.data.response.body);
+
       // API 데이터 값 접근
       const body = response.data.response.body;
       // api 호출 성공 코드 '00'의 값 || 타입이 다를시 에러 메시지 출력

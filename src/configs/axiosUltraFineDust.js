@@ -11,8 +11,10 @@ const getTodayDate = () => {
   return `${yyyy}-${mm}-${dd}`;
 };
 
-const API_BASE_URL = "https://app12.green-meerkat.kro.kr/B552584";
-const API_KEY = "834qgh90a2304fj23985yfg2w3ryfci8g32trict6jni56";
+// const API_BASE_URL = "https://app12.green-meerkat.kro.kr/B552584";
+// const API_KEY = "";
+const API_BASE_URL= "/api/air/B552584";
+const API_KEY= import.meta.env.VITE_AIR_QUALITY_KEY;
 const DEFAULT_PARAMS = {
   serviceKey: API_KEY,
   returnType: "json",

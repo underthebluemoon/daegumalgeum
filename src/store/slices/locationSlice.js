@@ -60,6 +60,11 @@ const locationSlice = createSlice({
         measuringStation: action.payload.nearestStation.stationName
       });
     })
+    .addCase(getCurrentLocation.rejected, (state, action) => {
+      state.error = true;
+      state.error = action.error.message || '데이터를 불러오는데 실패했습니다.';
+      console.error('현재 위치 정보 가져오기 실패 : ', action.error);
+    })
 
     // ============================================
     // ||     주소(검색어)로 측정소 가져오기
@@ -79,16 +84,21 @@ const locationSlice = createSlice({
         measuringStation: action.payload.nearestStation.stationName
       });
     })
+    .addCase(getSearchLocation.rejected, (state, action) => {
+      state.error = true;
+      state.error = action.error.message || '데이터를 불러오는데 실패했습니다.';
+      console.error('검색 위치 정보 가져오기 실패 : ', action.error);
+    })
 
     // ============================================
-    // ||     오류 처리
+    // ||     오류 처리 - addMatcher -> addCase 로 각각 처리
     // ============================================
-    .addMatcher(
-      action => action.type.endsWith('/rejected'),
-      (state, action) => {
-        console.log('location Thunk 측정소 불러오기 실패', action.error);
-      }
-    )
+    // .addMatcher(
+    //   action => action.type.endsWith('/rejected'),
+    //   (state, action) => {
+    //     console.log('location Thunk 측정소 불러오기 실패', action.error);
+    //   }
+    // )
   }
 })
 

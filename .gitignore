@@ -28,3 +28,5 @@ dev-dist
 # Personal files
 CLAUDE.md
 .vercel
+
+.env
